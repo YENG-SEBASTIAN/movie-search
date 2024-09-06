@@ -1,5 +1,3 @@
-// handle password hashing or encryption
-
 const bcrypt = require('bcryptjs');
 
 const hashPassword = async (password) => {

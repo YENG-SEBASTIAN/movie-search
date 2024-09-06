@@ -1,5 +1,5 @@
 const User = require('../models/User');
-const generateToken = require('../utils/generateToken');
+const {generateToken, verifyToken} = require('../utils/generateToken');
 
 // Register a new user
 exports.register = async (req, res) => {
@@ -15,34 +15,56 @@ exports.register = async (req, res) => {
     // Create new user
     user = await User.create({ username, email, password });
 
-    // Generate JWT token
-    const token = generateToken(user._id);
-    res.status(201).json({ token });
+    // Remove password from the user object before sending the response
+    const userResponse = user.toObject();
+    delete userResponse.password;
+
+    res.status(201).json({ 
+      status: 201, 
+      message: "Account Created successfully", 
+      user: userResponse 
+    });
   } catch (error) {
-    res.status(500).json({ message: 'Server error' });
+    res.status(500).json({ 
+      message: 'Server error' 
+    });
   }
 };
+
 
 // Login user
 exports.login = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    // Check if user exists
+    // Check if the user exists
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(400).json({ message: 'Invalid credentials' });
+      return res.status(400).json({ 
+        message: 'Invalid credentials' 
+      });
     }
 
-    // Check if password matches
+    // Check if the entered password matches the hashed password
     const isMatch = await user.matchPassword(password);
     if (!isMatch) {
-      return res.status(400).json({ message: 'Invalid credentials' });
+      return res.status(400).json({ 
+        message: 'Invalid credentials' 
+      });
     }
 
-    // Generate JWT token
-    const token = generateToken(user._id);
-    res.json({ token });
+    // Remove password and other fields from the user object before sending the response
+    const userResponse = user.toObject();
+    delete userResponse.password;
+    delete userResponse.createdAt;
+    delete userResponse.updatedAt;
+
+    // Generate JWT token and send the response
+    token = generateToken(user._id)
+    res.json({ 
+      user : userResponse, 
+      token: token 
+    });
   } catch (error) {
     res.status(500).json({ message: 'Server error' });
   }

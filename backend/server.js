@@ -6,7 +6,7 @@ const authRoutes = require('./routes/authRoutes');
 
 const app = express();
 
-// Connect to the database
+// Connection to the database
 connectDB();
 
 // Middleware for parsing JSON

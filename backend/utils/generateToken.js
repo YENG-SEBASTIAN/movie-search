@@ -8,4 +8,14 @@ const generateToken = (id) => {
   });
 };
 
-module.exports = generateToken;
+
+const verifyToken = (token) => {
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    console.log(decoded);
+  } catch (error) {
+    console.error('Invalid token:', error.message);
+  }
+};
+
+module.exports = {generateToken, verifyToken};
