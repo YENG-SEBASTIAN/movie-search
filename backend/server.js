@@ -18,7 +18,7 @@ swaggerSetup(app);
 
 // API Routes
 app.use('/api/auth', authRoutes);
-app.use('/api/movies', movieRoutes);
+// app.use('/api/movies', movieRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 5000;
