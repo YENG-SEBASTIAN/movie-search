@@ -1,3 +1,4 @@
+// handle password hashing or encryption
 
 const bcrypt = require('bcryptjs');
 
