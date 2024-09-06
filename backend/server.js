@@ -1,3 +1,6 @@
+// Load environment variables from .env file
+require('dotenv').config();
+
 const express = require('express');
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
@@ -15,7 +18,7 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: 'http://localhost:3000',
+        url: `http://localhost:${process.env.PORT || 5000}`,
       },
     ],
   },
@@ -25,12 +28,12 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-// Your routes will go here
+// Basic route
 app.get('/', (req, res) => {
   res.send('Hello server');
 });
 
-// Start the server
+// Start the server using the PORT from .env or default to 5000
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
