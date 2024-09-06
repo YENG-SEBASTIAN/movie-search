@@ -4,9 +4,12 @@ const router = express.Router();
 
 /**
  * @swagger
+ * tags:
+ *   - Auth
  * /api/auth/register:
  *   post:
  *     summary: Register a new user
+ *     tags: [Auth]
  *     description: Create a new user with username, email, and password.
  *     requestBody:
  *       required: true
@@ -31,9 +34,12 @@ router.post('/register', register);
 
 /**
  * @swagger
+ * tags:
+ *   - Auth
  * /api/auth/login:
  *   post:
  *     summary: Log in a user
+ *     tags: [Auth]
  *     description: Log in with email and password.
  *     requestBody:
  *       required: true

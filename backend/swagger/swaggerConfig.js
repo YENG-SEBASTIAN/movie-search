@@ -12,8 +12,19 @@ const swaggerOptions = {
     servers: [
       { url: `http://localhost:${process.env.PORT || 5000}` },
     ],
+    // Add tags for grouping by controller
+    tags: [
+      {
+        name: 'Auth',
+        description: 'Authentication endpoints',
+      },
+      {
+        name: 'Movies',
+        description: 'Movie-related endpoints (search, details, etc.)',
+      },
+    ],
   },
-  apis: ['./routes/*.js'], // Path to your route files with Swagger annotations
+  apis: ['./routes/*.js'],
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);

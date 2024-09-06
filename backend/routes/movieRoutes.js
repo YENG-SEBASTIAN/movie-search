@@ -1,16 +1,16 @@
 const express = require('express');
-const {
-  getAllMovies,
-  searchMovies,
-  getMovieDetails,
-} = require('../controllers/movieController');
+const { getAllMovies, searchMovies, getMovieDetails } = require('../controllers/movieController');
+const protect = require('../middleware/authMiddleware');
 const router = express.Router();
 
 /**
  * @swagger
+ * tags:
+ *   - Movies
  * /api/movies/popular:
  *   get:
  *     summary: Fetch a list of all popular movies
+ *     tags: [Movies]
  *     description: Retrieve a list of the current popular movies from TMDB.
  *     responses:
  *       200:
@@ -18,13 +18,16 @@ const router = express.Router();
  *       500:
  *         description: Internal server error.
  */
-router.get('/popular', getAllMovies);
+router.get('/popular', protect, getAllMovies);
 
 /**
  * @swagger
+ * tags:
+ *   - Movies
  * /api/movies/search:
  *   get:
  *     summary: Search for a movie by title
+ *     tags: [Movies]
  *     description: Use a search query to retrieve a list of movies from TMDB API.
  *     parameters:
  *       - in: query
@@ -41,13 +44,16 @@ router.get('/popular', getAllMovies);
  *       500:
  *         description: Internal server error.
  */
-router.get('/search', searchMovies);
+router.get('/search', protect, searchMovies);
 
 /**
  * @swagger
+ * tags:
+ *   - Movies
  * /api/movies/{movieId}:
  *   get:
  *     summary: Fetch detailed information about a movie
+ *     tags: [Movies]
  *     description: Get detailed information about a specific movie using its TMDB movie ID.
  *     parameters:
  *       - in: path
@@ -66,6 +72,6 @@ router.get('/search', searchMovies);
  *       500:
  *         description: Internal server error.
  */
-router.get('/:movieId', getMovieDetails);
+router.get('/:movieId', protect, getMovieDetails);
 
 module.exports = router;
