@@ -3,7 +3,6 @@ const express = require('express');
 const connectDB = require('./DbConfig/db');
 const swaggerSetup = require('./swagger/swaggerConfig');
 const authRoutes = require('./routes/authRoutes');
-const movieRoutes = require('./routes/movieRoutes');
 
 const app = express();
 
@@ -13,12 +12,11 @@ connectDB();
 // Middleware for parsing JSON
 app.use(express.json());
 
-// Swagger setup
+// Swagger documentation
 swaggerSetup(app);
 
 // API Routes
 app.use('/api/auth', authRoutes);
-// app.use('/api/movies', movieRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 5000;

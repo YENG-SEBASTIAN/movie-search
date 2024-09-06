@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const hashPassword = require('../utils/hashPassword');
 
 // User schema
 const userSchema = new mongoose.Schema({
@@ -34,8 +35,7 @@ userSchema.pre('save', async function (next) {
   }
 
   // Hash the password
-  const salt = await bcrypt.genSalt(10);
-  this.password = await bcrypt.hash(this.password, salt);
+  this.password = hashPassword(this.password);
 });
 
 // compare entered password with hashed password

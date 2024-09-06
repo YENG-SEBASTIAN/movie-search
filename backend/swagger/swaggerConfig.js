@@ -7,15 +7,13 @@ const swaggerOptions = {
     info: {
       title: 'Movie Search API',
       version: '1.0.0',
-      description: 'Movie Search API Documentation',
+      description: 'API Documentation for the Movie Search App',
     },
     servers: [
-      {
-        url: `http://localhost:${process.env.PORT || 5000}`,
-      },
+      { url: `http://localhost:${process.env.PORT || 5000}` },
     ],
   },
-  apis: ['./routes/*.js'], // Point to route files with Swagger annotations
+  apis: ['./routes/*.js'], // Path to your route files with Swagger annotations
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
