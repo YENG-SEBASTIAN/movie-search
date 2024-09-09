@@ -6,7 +6,6 @@ import Trending from './components/Trending';
 import Genres from './components/Genres';
 import MovieDetail from './components/MovieDetail';
 
-
 function App() {
   return (
     <Router>
@@ -16,7 +15,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/trending" element={<Trending />} />
           <Route path="/genres" element={<Genres />} />
-          <Route path="/movies/:movieId" component={<MovieDetail/>} />
+          <Route path="/movies/:movieId" element={<MovieDetail />} />
         </Routes>
       </div>
     </Router>

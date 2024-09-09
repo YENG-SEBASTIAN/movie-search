@@ -7,6 +7,7 @@ import { FaSpinner } from 'react-icons/fa';
 const Trending = () => {
     const dispatch = useDispatch();
     const { popularMovies, loading, error } = useSelector((state) => state.movies);
+
     useEffect(() => {
         dispatch(fetchPopularMovies());
     }, [dispatch]);
@@ -54,6 +55,5 @@ const Trending = () => {
         </div>
     );
 };
-
 
 export default Trending;
