@@ -11,50 +11,38 @@ import {
 } from '../actions/movieActions';
 
 const initialState = {
-  popularMovies: [],      // Movies list for the "Trending" page
-  movieDetail: null,      // Detailed information for a single movie
-  searchResults: [],      // Movies list for search results
+  popularMovies: [],
+  movieDetail: null,
+  searchResults: [],
   loading: false,
   error: null
 };
 
 const movieReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_POPULAR_MOVIES_REQUEST:
-      return { ...state, loading: true, error: null };
-    case FETCH_POPULAR_MOVIES_SUCCESS:
-      return { 
-        ...state, 
-        loading: false, 
-        popularMovies: action.payload.movies || []
-      };
-    case FETCH_POPULAR_MOVIES_FAILURE:
-      return { ...state, loading: false, error: action.error };
+      case FETCH_POPULAR_MOVIES_REQUEST:
+          return { ...state, loading: true, error: null };
+      case FETCH_POPULAR_MOVIES_SUCCESS:
+          return { ...state, loading: false, popularMovies: action.payload };
+      case FETCH_POPULAR_MOVIES_FAILURE:
+          return { ...state, loading: false, error: action.error };
 
-    case FETCH_MOVIE_DETAIL_REQUEST:
-      return { ...state, loading: true, error: null };
-    case FETCH_MOVIE_DETAIL_SUCCESS:
-      return { 
-        ...state, 
-        loading: false, 
-        movieDetail: action.payload
-      };
-    case FETCH_MOVIE_DETAIL_FAILURE:
-      return { ...state, loading: false, error: action.error };
+      case FETCH_MOVIE_DETAIL_REQUEST:
+          return { ...state, loading: true, error: null };
+      case FETCH_MOVIE_DETAIL_SUCCESS:
+          return { ...state, loading: false, movieDetail: action.payload };
+      case FETCH_MOVIE_DETAIL_FAILURE:
+          return { ...state, loading: false, error: action.error };
 
-    case FETCH_MOVIES_BY_SEARCH_REQUEST:
-      return { ...state, loading: true, error: null };
-    case FETCH_MOVIES_BY_SEARCH_SUCCESS:
-      return { 
-        ...state, 
-        loading: false, 
-        searchResults: action.payload.movies || []
-      };
-    case FETCH_MOVIES_BY_SEARCH_FAILURE:
-      return { ...state, loading: false, error: action.error };
+      case FETCH_MOVIES_BY_SEARCH_REQUEST:
+          return { ...state, loading: true, error: null };
+      case FETCH_MOVIES_BY_SEARCH_SUCCESS:
+          return { ...state, loading: false, searchResults: action.payload };
+      case FETCH_MOVIES_BY_SEARCH_FAILURE:
+          return { ...state, loading: false, error: action.error };
 
-    default:
-      return state;
+      default:
+          return state;
   }
 };
 

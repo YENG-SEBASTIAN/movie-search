@@ -7,7 +7,7 @@ import { FaSpinner } from 'react-icons/fa';
 const Trending = () => {
     const dispatch = useDispatch();
     const { popularMovies, loading, error } = useSelector((state) => state.movies);
-
+    console.log("popularMovies", popularMovies)
     useEffect(() => {
         dispatch(fetchPopularMovies());
     }, [dispatch]);
@@ -49,11 +49,12 @@ const Trending = () => {
                         </div>
                     ))
                 ) : (
-                    <div className="text-4xl text-center text-gray-400">No movies found.</div>
+                    <div className="text-center text-gray-400">No movies found.</div>
                 )}
             </div>
         </div>
     );
 };
+
 
 export default Trending;

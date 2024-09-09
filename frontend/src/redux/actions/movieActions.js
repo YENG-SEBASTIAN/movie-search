@@ -15,7 +15,6 @@ export const FETCH_MOVIES_BY_SEARCH_FAILURE = 'FETCH_MOVIES_BY_SEARCH_FAILURE';
 
 const API_URL = 'http://localhost:4000/api/movies';
 
-// Fetch popular movies
 export const fetchPopularMovies = () => async (dispatch) => {
     dispatch({ type: FETCH_POPULAR_MOVIES_REQUEST });
 
@@ -27,7 +26,6 @@ export const fetchPopularMovies = () => async (dispatch) => {
     }
 };
 
-// Fetch movie detail
 export const fetchMovieDetail = (movieId) => async (dispatch) => {
     dispatch({ type: FETCH_MOVIE_DETAIL_REQUEST });
 
@@ -39,7 +37,6 @@ export const fetchMovieDetail = (movieId) => async (dispatch) => {
     }
 };
 
-// Fetch movies by search query
 export const fetchMoviesBySearchQuery = (query) => async (dispatch) => {
     dispatch({ type: FETCH_MOVIES_BY_SEARCH_REQUEST });
 
