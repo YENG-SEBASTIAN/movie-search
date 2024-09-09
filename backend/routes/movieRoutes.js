@@ -18,7 +18,7 @@ const router = express.Router();
  *       500:
  *         description: Internal server error.
  */
-router.get('/popular', protect, getAllMovies);
+router.get('/popular',getAllMovies);
 
 /**
  * @swagger
@@ -44,7 +44,7 @@ router.get('/popular', protect, getAllMovies);
  *       500:
  *         description: Internal server error.
  */
-router.get('/search', protect, searchMovies);
+router.get('/search',searchMovies);
 
 /**
  * @swagger
@@ -72,6 +72,6 @@ router.get('/search', protect, searchMovies);
  *       500:
  *         description: Internal server error.
  */
-router.get('/:movieId', protect, getMovieDetails);
+router.get('/:movieId', getMovieDetails);
 
 module.exports = router;

@@ -4,6 +4,8 @@ import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Trending from './components/Trending';
 import Genres from './components/Genres';
+import MovieDetail from './components/MovieDetail';
+
 
 function App() {
   return (
@@ -14,6 +16,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/trending" element={<Trending />} />
           <Route path="/genres" element={<Genres />} />
+          <Route path="/movies/:movieId" component={MovieDetail} />
         </Routes>
       </div>
     </Router>

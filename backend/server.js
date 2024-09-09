@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');  // Import the cors package
 const connectDB = require('./DbConfig/db');
 const swaggerSetup = require('./swagger/swaggerConfig');
 const authRoutes = require('./routes/authRoutes');
@@ -12,6 +13,8 @@ connectDB();
 
 // Middleware for parsing JSON
 app.use(express.json());
+
+app.use(cors());
 
 // Swagger documentation
 swaggerSetup(app);
