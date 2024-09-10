@@ -30,6 +30,7 @@ exports.getAllMovies = async (req, res) => {
     res.status(500).json({
       status: 500,
       message: 'Server error while fetching popular movies',
+      error: error.message,
     });
   }
 };
@@ -72,11 +73,12 @@ exports.searchMovies = async (req, res) => {
     res.status(500).json({
       status: 500,
       message: 'Server error while searching for movies',
+      error: error.message,
     });
   }
 };
 
-// Get the detailed information of a selected movie
+// Get detailed information about a selected movie
 exports.getMovieDetails = async (req, res) => {
   const { movieId } = req.params;
 
@@ -113,6 +115,39 @@ exports.getMovieDetails = async (req, res) => {
     res.status(500).json({
       status: 500,
       message: 'Server error while fetching movie details',
+      error: error.message,
+    });
+  }
+};
+
+// Get a list of all movie genres
+exports.getMovieGenres = async (req, res) => {
+  try {
+    // Make an API call to TMDB to get the list of genres
+    const response = await axios.get(`${tmdbApiUrl}/genre/movie/list`, {
+      params: {
+        api_key: process.env.TMDB_API_KEY,
+      },
+    });
+
+    if (response.data.genres.length === 0) {
+      return res.status(404).json({
+        status: 404,
+        message: 'No movie genres found.',
+      });
+    }
+
+    // Return the list of genres
+    res.status(200).json({
+      status: 200,
+      message: 'Movie genres fetched successfully',
+      genres: response.data, // List of genres
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: 500,
+      message: 'Server error while fetching movie genres',
+      error: error.message,
     });
   }
 };
