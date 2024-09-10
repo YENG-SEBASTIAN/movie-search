@@ -13,7 +13,8 @@ export const FETCH_MOVIES_BY_SEARCH_REQUEST = 'FETCH_MOVIES_BY_SEARCH_REQUEST';
 export const FETCH_MOVIES_BY_SEARCH_SUCCESS = 'FETCH_MOVIES_BY_SEARCH_SUCCESS';
 export const FETCH_MOVIES_BY_SEARCH_FAILURE = 'FETCH_MOVIES_BY_SEARCH_FAILURE';
 
-const API_URL = 'http://localhost:4000/api/movies';
+// const API_URL = 'http://localhost:4000/api/movies';
+const API_URL = 'https://movie-search-9d26.onrender.com/api/movies'
 
 export const fetchPopularMovies = () => async (dispatch) => {
     dispatch({ type: FETCH_POPULAR_MOVIES_REQUEST });
